@@ -10,12 +10,18 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>TI2 | Livre d'or</title>
     <link rel="icon" type="image/png" href="img/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
     <header class="site-header">
-        <h1>Livre d'or</h1>
+        <div>
+            <p class="site-kicker">Projet TI2</p>
+            <h1>Livre d'or</h1>
+        </div>
         <button type="button" id="toggle-theme">Dark Mode</button>
     </header>
 
