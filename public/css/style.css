@@ -1,0 +1,280 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #222;
+    background: #f4f6f8;
+}
+
+.site-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    color: white;
+    background: #234;
+}
+
+.site-header h1 {
+    margin: 0;
+    font-size: 1.8rem;
+}
+
+.anchor-link {
+    position: fixed;
+    top: 8rem;
+    right: 1rem;
+    z-index: 10;
+    display: grid;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: white;
+    border: 1px solid #d7dee5;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.16);
+    display: none;
+}
+
+img.ancre {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+}
+
+.page {
+    width: min(1100px, 100%);
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+.form-section,
+.messages-section {
+    margin-bottom: 1rem;
+    padding: 1rem;
+    background: white;
+    border: 1px solid #d7dee5;
+    border-radius: 8px;
+}
+
+h2 {
+    margin-top: 0;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    margin-bottom: 1rem;
+}
+
+label {
+    font-weight: 700;
+}
+
+input,
+textarea,
+button {
+    font: inherit;
+}
+
+input,
+textarea {
+    width: 100%;
+    padding: 0.7rem;
+    border: 1px solid #aeb8c2;
+    border-radius: 6px;
+}
+
+textarea {
+    min-height: 130px;
+    resize: vertical;
+}
+
+button {
+    cursor: pointer;
+    border: 0;
+    border-radius: 6px;
+    padding: 0.7rem 1rem;
+    font-weight: 700;
+}
+
+#toggle-theme,
+.submit-button {
+    color: white;
+    background: #0b6bcb;
+}
+
+#messages.error,
+.alert.error {
+    color: #8a1f11;
+    background: #ffe8e3;
+    border: 1px solid #ffb6a8;
+}
+
+#messages.success,
+.alert.success {
+    color: #135c2c;
+    background: #e2f7e9;
+    border: 1px solid #9ed8b1;
+}
+
+#messages,
+.alert {
+    margin-bottom: 1rem;
+    padding: 0.8rem;
+    border-radius: 6px;
+}
+
+#messages:empty {
+    display: none;
+}
+
+#messages p,
+.alert {
+    margin-top: 0;
+    margin-bottom: 0.35rem;
+}
+
+#messages p:last-child {
+    margin-bottom: 0;
+}
+
+#message-counter {
+    margin: -0.4rem 0 0;
+    color: #52606d;
+    font-size: 0.9rem;
+}
+
+#message-counter.warning {
+    color: #b42318;
+    font-weight: 700;
+}
+
+.guestbook-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+    padding: 0;
+    list-style: none;
+}
+
+.guestbook-item {
+    padding: 1rem;
+    border: 1px solid #d7dee5;
+    border-radius: 8px;
+    background: #fbfcfd;
+}
+
+.guestbook-author {
+    margin: 0;
+    font-weight: 700;
+}
+
+.guestbook-date {
+    margin: 0.25rem 0 0.75rem;
+    color: #52606d;
+    font-size: 0.9rem;
+}
+
+.guestbook-message {
+    margin: 0;
+    line-height: 1.5;
+}
+
+.pagination {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    margin: 1rem 0;
+}
+
+.pagination a,
+.pagination strong {
+    min-width: 2.3rem;
+    padding: 0.55rem 0.75rem;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 6px;
+}
+
+.pagination a {
+    color: #0b4f94;
+    background: #e8f2ff;
+    border: 1px solid #bdd9f7;
+}
+
+.pagination strong {
+    color: white;
+    background: #0b6bcb;
+    border: 1px solid #0b6bcb;
+}
+
+/* Dark mode styles */
+
+.dark-mode {
+    color: #f4f6f8;
+    background: #111827;
+}
+
+.dark-mode .site-header {
+    background: #000;
+}
+
+.dark-mode .form-section,
+.dark-mode .messages-section {
+    background: #1f2937;
+    border-color: #374151;
+}
+
+.dark-mode input,
+.dark-mode textarea {
+    color: #f4f6f8;
+    background: #111827;
+    border-color: #4b5563;
+}
+
+.dark-mode .guestbook-item {
+    background: #111827;
+    border-color: #374151;
+}
+
+.dark-mode .guestbook-date,
+.dark-mode #message-counter {
+    color: #cbd5e1;
+}
+
+.dark-mode .anchor-link {
+    background: #1f2937;
+    border-color: #374151;
+}
+
+.dark-mode .pagination a {
+    color: #dbeafe;
+    background: #1e3a5f;
+    border-color: #315985;
+}
+
+@media (max-width: 700px) {
+
+    .site-header,
+    .form-grid,
+    .guestbook-list {
+        display: block;
+    }
+
+    .site-header h1 {
+        margin-bottom: 1rem;
+    }
+}
