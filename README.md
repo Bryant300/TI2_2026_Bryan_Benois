@@ -1,64 +1,33 @@
-# TI2-2026
+# TI2 - Livre d'or
 
-## WEBDEV 2026 - TP de mi-semestre : Livre d'or (Guestbook)
+Projet de formation de Bryan en PHP procédural, PDO, MariaDB, HTML, CSS et JavaScript. La structure modèle/vue et le style violet d'origine sont conservés.
 
-### PDF des consignes et la grille d'évaluation
+## Installation locale
+1. Démarrer MariaDB dans WampServer. Vérifier son port (3307 est le réglage d'exemple).
+2. Importer `data/ti2web2026.sql` dans MariaDB. Il crée une base distincte `ti2_portfolio`, sans supprimer de base ni de table. Il ne migre pas une table existante incompatible.
+3. Copier `config.php.ini` en `config.php`, puis adapter l'hôte, le port, l'utilisateur et le mot de passe. Ne jamais publier le vrai fichier de configuration.
+4. Utiliser PHP 8 ou plus avec `pdo_mysql` et `mbstring`.
+5. Depuis le dossier du projet, lancer :
+```powershell
+.\lancer-local.ps1
+```
+6. Ouvrir http://127.0.0.1:8082/.
 
-Vous les trouverez dans le dossier `data/` du dépôt.
+Le lanceur active les extensions disponibles pour ce processus seulement, sans modifier php.ini. Il crée une copie de configuration si elle manque. Avec un hôte virtuel WampServer, exposer uniquement `public/` et activer les extensions dans le PHP d'Apache.
 
-### Ressources
-- Vous pouvez utiliser les ressources su votre machine. je vous conseille formtement de charger https://github.com/WebDevCF2m2026/PDO-2026/ Pour PHP/SQL
-- Les autres matières doivent également être chargées.
+Le compte root sans mot de passe est uniquement un exemple pour un environnement local WampServer. Pour un hébergement, utiliser un compte dédié à la base et des identifiants privés.
 
-## Marche à suivre
+## Fonctionnalités
+Ajout d'un message, validation PHP et JavaScript, affichage échappé, pagination de trois messages, compteur et bouton de thème. Les noms, l'email, le mobile belge, le code postal et le message sont requis selon le fonctionnement d'origine.
+Limite harmonisée : message de 10 à 300 caractères, noms de 2 à 100 caractères.
 
-- **Créez un fork du dépôt TI2-2026 sur github.com puis clonez-le sur votre machine**
-- Rajoutez un upstream pour pouvoir l'envoyer en fin de journée.
-- Créez un hôte virtuel dans **WAMP** sur le dossier …/TI2-2026/public/ nommé TI2-2026
-- Créez une base de données dans phpMyAdmin en important le fichier ti2web2026.sql (en MariaDB ou MySQL)
-- Enregistrez une copie de config.php.ini en config.php en vérifiant que cela correspond aux paramètres de votre base de données !
+## Corrections apportées
+Confirmation conservée après redirection ; données de formulaire non textuelles refusées ; longueurs bornées ; téléphone normalisé ; token CSRF ; pagination stable et résistante aux paramètres incorrects ; erreur de connexion sans détail sensible ; erreurs de lecture signalées au lieu d'afficher une liste vide.
+Les consignes initiales du cours sont conservées dans `data/CONSIGNES-ORIGINALES.md`.
 
-### Consignes
+## Vérification
+Enregistrement et lecture réellement testés avec MariaDB 11.5.2 dans une instance de test isolée. Tests : cas valide, doublon au rafraîchissement évité par redirection, pagination, caractères accentués, texte contenant du HTML, champs invalides et CSRF absent/invalide.
+Les données de test ne sont pas incluses dans le script de création.
 
-- Vous pouvez vous aider des fichiers vus au cours pour réaliser ce TI. 
-- Vous ne pouvez pas vous aider les uns les autres pendant ce premier jour de TI. 
-- Vous ne pouvez pas utiliser Internet, votre téléphone ou une IA pendant ce TI.
-
-**Il s’agit surtout d’une auto-évaluation de vos compétences !**
-
-Évitez de copier/coller des bouts de code sans les comprendre. 
-
-Pour prouver que vous avez compris, vous devriez être capable de les expliquer avec des ‘commentaires personnels’, en PHP comme en Javascript.
-
-Faites un `commit` à chaque étape validée
-
-Il doit y avoir un minimum de 10 `commits` pour ce TI, utilisez des noms qui représentent chaque étape de votre travail. N’envoyez pas votre travail sur Github avant 16h30
-
-Tout commit après le 26 mai 2026 à 16h30 ne sera pas pris en compte lors de la première correction !
-
-### Pull Request
-Faites un `Pull Request` uniquement à la fin de votre TI, pas avant 16h30 !
-Vérifiez que vous avez bien suivi les consignes avant de le faire.
-
-Si vous avez fini et que vous êtes satisfait de votre travail, faites les points Bonus (vous pouvez les faire sur une autre branche, et envoyer une autre branche nommée bonus).
-
-Si tout est bon, faites un `Pull Request` sur le dépôt original.
-N'envoyez pas votre pull request avant `16h30` le jour du test
-Occupez-vous ailleurs en attendant, n'aidez pas les autres stagiaires.
-Des formateurs pourront vous aider si vous avez des questions.
-
-Exemple de graphique responsive pour la page d'accueil du livre d'or (vous n'êtes pas obligé de faire exactement pareil, c'est juste un exemple) :
-
-### Figure 1 : vue “smartphone”
-
-![guestbook_phone.png](data/guestbook_phone.png)
-
-### Figure 2 : Vue “Tablette”
-
-![guestbook_tablette.png](data/guestbook_tablette.png)
-
-### Figure 3 : Vue “Desktop”
-
-![guestbook_desktop.png](data/guestbook_desktop.png)   
-
-### Bon travail à toutes et à tous !
+## Limites
+Pas d'espace administrateur, d'antispam avancé ou de suppression des messages ajouté. Ce sont des évolutions distinctes. L'import crée la structure, pas des comptes ni un jeu de données réel. GitHub Pages ne peut pas exécuter PHP/MariaDB.

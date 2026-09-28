@@ -37,48 +37,49 @@
             <?php endif; ?>
 
             <?php if (!empty($error)): ?>
-                <p class="alert error"><?= htmlspecialchars($error) ?></p>
+                <p class="alert error" role="alert"><?= htmlspecialchars($error) ?></p>
             <?php endif; ?>
 
             <form method="post" action="" id="guestbook-form" novalidate>
-                <div id="messages"></div>
+                <input type="hidden" name="csrf" value="<?= htmlspecialchars($_SESSION['csrf'], ENT_QUOTES, 'UTF-8') ?>">
+                <div id="messages" role="status" aria-live="polite"></div>
 
                 <div class="form-grid">
                     <div class="field">
                         <label for="firstname">Prenom</label>
-                        <input type="text" name="firstname" id="firstname"
-                            value="<?= htmlspecialchars($_POST["firstname"] ?? "") ?>">
+                        <input type="text" name="firstname" id="firstname" maxlength="100" required
+                            value="<?= htmlspecialchars($values["firstname"] ?? "") ?>">
                     </div>
 
                     <div class="field">
                         <label for="lastname">Nom</label>
-                        <input type="text" name="lastname" id="lastname"
-                            value="<?= htmlspecialchars($_POST["lastname"] ?? "") ?>">
+                        <input type="text" name="lastname" id="lastname" maxlength="100" required
+                            value="<?= htmlspecialchars($values["lastname"] ?? "") ?>">
                     </div>
 
                     <div class="field">
                         <label for="usermail">Email</label>
-                        <input type="email" name="usermail" id="usermail"
-                            value="<?= htmlspecialchars($_POST["usermail"] ?? "") ?>">
+                        <input type="email" name="usermail" id="usermail" maxlength="200" required
+                            value="<?= htmlspecialchars($values["usermail"] ?? "") ?>">
                     </div>
 
                     <div class="field">
                         <label for="phone">Telephone</label>
-                        <input type="text" name="phone" id="phone" placeholder="0470 12 34 56"
-                            value="<?= htmlspecialchars($_POST["phone"] ?? "") ?>">
+                        <input type="text" name="phone" id="phone" maxlength="25" required placeholder="0470 12 34 56"
+                            value="<?= htmlspecialchars($values["phone"] ?? "") ?>">
                     </div>
 
                     <div class="field">
                         <label for="postcode">Code postal</label>
-                        <input type="text" name="postcode" id="postcode" maxlength="4"
-                            value="<?= htmlspecialchars($_POST["postcode"] ?? "") ?>">
+                        <input type="text" name="postcode" id="postcode" maxlength="4" required
+                            value="<?= htmlspecialchars($values["postcode"] ?? "") ?>">
                     </div>
                 </div>
 
                 <div class="field">
                     <label for="message">Message</label>
-                    <textarea name="message" id="message"
-                        maxlength="300"><?= htmlspecialchars($_POST["message"] ?? "") ?></textarea>
+                    <textarea name="message" id="message" required
+                        maxlength="300"><?= htmlspecialchars($values["message"] ?? "") ?></textarea>
                     <p id="message-counter">0 / 300 caracteres</p>
                 </div>
 

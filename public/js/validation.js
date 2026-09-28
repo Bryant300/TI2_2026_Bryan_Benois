@@ -10,7 +10,7 @@ function showMessages(messages, type) {
 }
 
 function updateCounter() {
-    const length = messageInput.value.length;
+    const length = Array.from(messageInput.value).length;
     counter.textContent = `${length} / 300 caracteres`;
     counter.classList.toggle("warning", length >= 280);
 }
@@ -32,12 +32,12 @@ form.addEventListener("submit", (event) => {
     messagesBox.innerHTML = "";
     messagesBox.className = "";
 
-    if (firstname.length < 2) errors.push("Le prenom doit contenir au moins 2 caracteres.");
-    if (lastname.length < 2) errors.push("Le nom doit contenir au moins 2 caracteres.");
-    if (!emailRegex.test(usermail)) errors.push("L'adresse email n'est pas valide.");
-    if (!/^[0-9]{4}$/.test(postcode)) errors.push("Le code postal belge doit contenir exactement 4 chiffres.");
+    if (Array.from(firstname).length < 2 || Array.from(firstname).length > 100) errors.push("Le prenom doit contenir au moins 2 caracteres.");
+    if (Array.from(lastname).length < 2 || Array.from(lastname).length > 100) errors.push("Le nom doit contenir au moins 2 caracteres.");
+    if (usermail.length > 200 || !emailRegex.test(usermail)) errors.push("L'adresse email n'est pas valide.");
+    if (!/^[1-9][0-9]{3}$/.test(postcode)) errors.push("Le code postal belge doit contenir exactement 4 chiffres.");
     if (!phoneRegex.test(phoneClean)) errors.push("Le numero de telephone belge n'est pas valide.");
-    if (message.length < 10) errors.push("Le message doit contenir au moins 10 caracteres.");
+    if (Array.from(message).length < 10 || Array.from(message).length > 300) errors.push("Le message doit contenir entre 10 et 300 caracteres.");
 
     if (errors.length > 0) {
         event.preventDefault();

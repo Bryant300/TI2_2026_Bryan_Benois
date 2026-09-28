@@ -19,13 +19,13 @@ function addGuestbook(
 
     $cleanPhone = preg_replace("/[\s.\-]/", "", $phone);
 
-    if (strlen($firstname) < 2) return false;
-    if (strlen($lastname) < 2) return false;
-    if (!filter_var($usermail, FILTER_VALIDATE_EMAIL)) return false;
+    if (mb_strlen($firstname) < 2 || mb_strlen($firstname) > 100) return false;
+    if (mb_strlen($lastname) < 2 || mb_strlen($lastname) > 100) return false;
+    if (mb_strlen($usermail) > 200 || !filter_var($usermail, FILTER_VALIDATE_EMAIL)) return false;
     if (!preg_match("/^[0-9]{4}$/", $postcode)) return false;
     if ((int) $postcode < 1000 || (int) $postcode > 9999) return false;
     if (!preg_match("/^(04[0-9]{8}|\+324[0-9]{8}|00324[0-9]{8})$/", $cleanPhone)) return false;
-    if (strlen($message) < 10 || strlen($message) > 500) return false;
+    if (mb_strlen($message) < 10 || mb_strlen($message) > 300) return false;
 
     $sql = "INSERT INTO guestbook (firstname, lastname, usermail, phone, postcode, message)
             VALUES (:firstname, :lastname, :usermail, :phone, :postcode, :message)";
@@ -36,7 +36,7 @@ function addGuestbook(
             ":firstname" => $firstname,
             ":lastname" => $lastname,
             ":usermail" => $usermail,
-            ":phone" => $phone,
+            ":phone" => $cleanPhone,
             ":postcode" => $postcode,
             ":message" => $message,
         ]);
@@ -49,7 +49,7 @@ function getAllGuestbook(PDO $db): array
 {
     $sql = "SELECT id, firstname, lastname, usermail, phone, postcode, message, datemessage
             FROM guestbook
-            ORDER BY datemessage DESC";
+            ORDER BY datemessage DESC, id DESC";
 
     try {
         $stmt = $db->query($sql);
@@ -58,7 +58,7 @@ function getAllGuestbook(PDO $db): array
 
         return $messages;
     } catch (PDOException $e) {
-        return [];
+        throw $e;
     }
 }
 
@@ -71,7 +71,7 @@ function getNbTotalGuestbook(PDO $db): int
 
         return (int) $result["total"];
     } catch (PDOException $e) {
-        return 0;
+        throw $e;
     }
 }
 
@@ -83,7 +83,7 @@ function getGuestbookPagination(PDO $db, int $pageActu = 1, int $limit = 5): arr
         $stmt = $db->prepare(
             "SELECT id, firstname, lastname, usermail, phone, postcode, message, datemessage
              FROM guestbook
-             ORDER BY datemessage DESC
+             ORDER BY datemessage DESC, id DESC
              LIMIT :limit OFFSET :offset"
         );
         $stmt->bindValue(":limit", $limit, PDO::PARAM_INT);
@@ -95,7 +95,7 @@ function getGuestbookPagination(PDO $db, int $pageActu = 1, int $limit = 5): arr
 
         return $messages;
     } catch (PDOException $e) {
-        return [];
+        throw $e;
     }
 }
 

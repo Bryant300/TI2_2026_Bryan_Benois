@@ -1,14 +1,17 @@
 :root {
-    --bg: #080512;
-    --panel: rgba(19, 11, 36, .78);
-    --panel-strong: rgba(27, 16, 51, .9);
-    --line: rgba(216, 180, 254, .18);
-    --text: #fbf7ff;
-    --muted: #c9b8de;
-    --accent: #c084fc;
-    --accent-2: #f0abfc;
-    --danger: #fb7185;
-    --success: #86efac;
+    --bg: #ffffff;
+    --panel: rgba(255, 255, 255, .88);
+    --panel-strong: #ffffff;
+    --line: rgba(109, 40, 217, .2);
+    --text: #1d102b;
+    --muted: #675a75;
+    --accent: #7c3aed;
+    --accent-2: #9333ea;
+    --danger: #be123c;
+    --success: #15803d;
+    --field-bg: #ffffff;
+    --field-focus: #faf5ff;
+    --shadow: rgba(88, 28, 135, .14);
 }
 
 * {
@@ -24,10 +27,9 @@ body {
     margin: 0;
     color: var(--text);
     background:
-        radial-gradient(circle at 16% 8%, rgba(192, 132, 252, .28), transparent 28rem),
-        radial-gradient(circle at 86% 18%, rgba(240, 171, 252, .18), transparent 24rem),
-        radial-gradient(circle at 50% 100%, rgba(124, 58, 237, .22), transparent 32rem),
-        linear-gradient(135deg, #080512 0%, #160a2c 52%, #0b0618 100%);
+        radial-gradient(circle at 16% 8%, rgba(192, 132, 252, .18), transparent 28rem),
+        radial-gradient(circle at 86% 18%, rgba(147, 51, 234, .1), transparent 24rem),
+        linear-gradient(135deg, #ffffff 0%, #faf7ff 52%, #f5efff 100%);
     font-family: "Space Grotesk", Arial, Helvetica, sans-serif;
     line-height: 1.6;
 }
@@ -48,8 +50,8 @@ body {
     gap: 1rem;
     border: 1px solid var(--line);
     border-radius: 8px;
-    background: rgba(19, 11, 36, .78);
-    box-shadow: 0 24px 80px rgba(8, 5, 18, .28);
+    background: var(--panel);
+    box-shadow: 0 24px 80px var(--shadow);
     backdrop-filter: blur(18px);
 }
 
@@ -77,10 +79,10 @@ body {
     place-items: center;
     width: 52px;
     height: 52px;
-    border: 1px solid rgba(240, 171, 252, .28);
+    border: 1px solid var(--line);
     border-radius: 50%;
-    background: rgba(27, 16, 51, .86);
-    box-shadow: 0 14px 40px rgba(192, 132, 252, .22);
+    background: var(--panel-strong);
+    box-shadow: 0 14px 40px var(--shadow);
 }
 
 img.ancre {
@@ -100,9 +102,9 @@ img.ancre {
     border: 1px solid var(--line);
     border-radius: 8px;
     background:
-        linear-gradient(180deg, rgba(192, 132, 252, .1), rgba(255, 255, 255, .025)),
+        linear-gradient(180deg, rgba(192, 132, 252, .1), rgba(255, 255, 255, .2)),
         var(--panel);
-    box-shadow: 0 24px 80px rgba(8, 5, 18, .24);
+    box-shadow: 0 24px 80px var(--shadow);
 }
 
 h2 {
@@ -125,7 +127,7 @@ h2 {
 }
 
 label {
-    color: #f5d0fe;
+    color: var(--accent);
     font-weight: 700;
 }
 
@@ -139,18 +141,18 @@ input,
 textarea {
     width: 100%;
     padding: .82rem .9rem;
-    border: 1px solid rgba(216, 180, 254, .24);
+    border: 1px solid var(--line);
     border-radius: 6px;
     outline: none;
     color: var(--text);
-    background: rgba(8, 5, 18, .46);
+    background: var(--field-bg);
     transition: border-color .2s ease, box-shadow .2s ease, background .2s ease;
 }
 
 input:focus,
 textarea:focus {
     border-color: rgba(240, 171, 252, .72);
-    background: rgba(27, 16, 51, .72);
+    background: var(--field-focus);
     box-shadow: 0 0 0 4px rgba(192, 132, 252, .14);
 }
 
@@ -195,14 +197,14 @@ button {
 
 #messages.error,
 .alert.error {
-    color: #ffe4e6;
+    color: var(--danger);
     background: rgba(251, 113, 133, .12);
     border: 1px solid rgba(251, 113, 133, .34);
 }
 
 #messages.success,
 .alert.success {
-    color: #dcfce7;
+    color: var(--success);
     background: rgba(134, 239, 172, .12);
     border: 1px solid rgba(134, 239, 172, .34);
 }
@@ -254,7 +256,7 @@ button {
 
 .guestbook-author {
     margin: 0;
-    color: #f5d0fe;
+    color: var(--accent);
     font-weight: 700;
 }
 
@@ -288,7 +290,7 @@ button {
 }
 
 .pagination a {
-    color: #f5d0fe;
+    color: var(--accent);
     background: rgba(192, 132, 252, .08);
     border: 1px solid rgba(240, 171, 252, .24);
 }
@@ -305,11 +307,24 @@ button {
 }
 
 .dark-mode {
+    --bg: #000000;
+    --panel: rgba(12, 6, 20, .92);
+    --panel-strong: rgba(19, 10, 31, .96);
+    --line: rgba(216, 180, 254, .24);
+    --text: #fbf7ff;
+    --muted: #c9b8de;
+    --accent: #c084fc;
+    --accent-2: #f0abfc;
+    --danger: #fb7185;
+    --success: #86efac;
+    --field-bg: rgba(8, 5, 18, .82);
+    --field-focus: rgba(27, 16, 51, .9);
+    --shadow: rgba(0, 0, 0, .48);
     color: var(--text);
     background:
-        radial-gradient(circle at 18% 8%, rgba(192, 132, 252, .28), transparent 28rem),
-        radial-gradient(circle at 86% 18%, rgba(240, 171, 252, .18), transparent 24rem),
-        linear-gradient(135deg, #080512 0%, #160a2c 52%, #0b0618 100%);
+        radial-gradient(circle at 18% 8%, rgba(126, 34, 206, .28), transparent 28rem),
+        radial-gradient(circle at 86% 18%, rgba(192, 132, 252, .16), transparent 24rem),
+        linear-gradient(135deg, #000000 0%, #0d0616 52%, #000000 100%);
 }
 
 .dark-mode .site-header,
@@ -323,8 +338,23 @@ button {
 .dark-mode input,
 .dark-mode textarea {
     color: var(--text);
-    background: rgba(8, 5, 18, .46);
-    border-color: rgba(216, 180, 254, .24);
+    background: var(--field-bg);
+    border-color: var(--line);
+}
+
+.dark-mode input:focus,
+.dark-mode textarea:focus {
+    background: var(--field-focus);
+}
+
+.dark-mode #messages.error,
+.dark-mode .alert.error {
+    color: #ffe4e6;
+}
+
+.dark-mode #messages.success,
+.dark-mode .alert.success {
+    color: #dcfce7;
 }
 
 .dark-mode .guestbook-date,
@@ -333,6 +363,7 @@ button {
 }
 
 @media (max-width: 700px) {
+
     .site-header,
     .form-grid,
     .guestbook-list {

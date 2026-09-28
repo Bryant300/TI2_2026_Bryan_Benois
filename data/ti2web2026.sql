@@ -5,19 +5,19 @@ START TRANSACTION;
 SET time_zone = "+02:00";
 
 --
--- Création de la base de données `ti2web2026`
+-- Création de la base de données `ti2_portfolio`
 --
 
-DROP DATABASE IF EXISTS `ti2web2026`;
-CREATE DATABASE IF NOT EXISTS `ti2web2026` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `ti2web2026`;
+-- Aucune suppression de base.
+CREATE DATABASE IF NOT EXISTS `ti2_portfolio` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `ti2_portfolio`;
 
 
 --
 -- Structure de la table `guestbook`
 --
 
-DROP TABLE IF EXISTS `guestbook`;
+
 CREATE TABLE IF NOT EXISTS `guestbook` (
                     `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
                     `firstname` varchar(100) NOT NULL,
@@ -28,6 +28,6 @@ CREATE TABLE IF NOT EXISTS `guestbook` (
                     `message` varchar(500) NOT NULL,
                     `datemessage` datetime NOT NULL DEFAULT current_timestamp(),
                                          PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 SET FOREIGN_KEY_CHECKS=1;
 COMMIT;
